@@ -27,6 +27,7 @@
     display: flex;
     justify-content: flex-end;
     gap: .25rem;
+    display: none;
 }
 .light, .dark{
     padding: .5rem .75rem;
@@ -80,5 +81,10 @@
     border-radius: .75rem;
     color: black;
     font-size: 1.75rem;
+}
 
+@media screen and (max-width:480px) {
+    .title{
+        font-size: 5rem;
+    }
 }

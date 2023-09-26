@@ -20,7 +20,6 @@ const AddTodo = () => {
     
     const submitHandler = async (e) => {
         e.preventDefault()
-        
         try {
             const res = await axios.post(`${process.env.BASE_URL}/api/todo`,todos)
                 router.refresh()

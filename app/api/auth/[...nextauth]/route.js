@@ -5,41 +5,49 @@ import bcrypt from 'bcryptjs'
 
 import CredentialsProvider from "next-auth/providers/credentials"
 
-
 export const authOptions = {
-    providers: [
-        CredentialsProvider({
-            name:'credentials',
+    providers: [CredentialsProvider({
+            name: 'credentials',
             credentials: {},
 
-            async authorize(credentials){
+            async authorize(credentials) {
                 const {email, password} = credentials
 
                 try {
                     await connectDB()
 
-                const user = await User.findOne({email})
+                    const user = await User.findOne({email})
 
-                if(!user){
-                    return null
-                }
+                    if (!user) {
+                        return null
+                    }
 
-                const passwordMatched = await bcrypt.compare(password, user.password)
+                    const passwordMatched = await bcrypt.compare(password, user.password)
 
-                if(!passwordMatched){
-                    return null
-                }
-                return user
+                    if (!passwordMatched) {
+                        return null
+                    }
+                    return user
                 } catch (error) {
                     console.log(error)
                 }
-                
 
             }
-        })
-    ],
-    session:{
+        })],
+    session: {
         strategy: 'jwt'
+    },
+    callbacks: {
+        
+        session: ({ session, token }) => ({
+            ...session,
+            user: {
+              ...session.user,
+              _id: token.sub,
+              
+            },
+
+          }),
     },
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
@@ -49,4 +57,7 @@ export const authOptions = {
 
 const handler = NextAuth(authOptions)
 
-export {handler as GET, handler as POST}
+export {
+    handler as GET,
+    handler as POST
+}

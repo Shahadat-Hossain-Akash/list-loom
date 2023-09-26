@@ -1,13 +1,22 @@
 import mongoose from 'mongoose';
 
 const todoSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false
+    },
     title: {
         type: String,
-        required: [true, 'Please enter a title']
+        required: [true, 'Please enter a todo title']
     },
-    todo: {
+    description: {
         type: String,
-        required: [true, 'Please enter a todo']
+        required: [true, 'Please enter a description']
+    },
+    completed: {
+        type: Boolean,
+        default: false
     },
     createdAt: {
         type: Date,

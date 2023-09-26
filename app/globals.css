@@ -1,6 +1,7 @@
 @font-face {
   font-family: "acid";
   src: url('/assets/fonts/AcidGrotesk-Regular.otf');
+  font-display: swap;
 }
 :root{
   --background: #0C0C0C;
@@ -24,6 +25,7 @@ body{
   background-color: var(--background);
   color: var(--title);
   font-family: 'acid';
+
 }
 ::-webkit-scrollbar{
   display: none;
