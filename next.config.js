@@ -21,9 +21,9 @@ const nextConfig = {
     },
     env: {
         MONGODB_URI: 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.kcdmkz2.mongodb.net/todo?retryWrites=true&w=majority',
-        BASE_URL: "http://localhost:3000",
+        BASE_URL: "https://list-loom-shahadat-hossain-akash.vercel.app",
         NEXTAUTH_SECRET: 'todosecrets',
-        NEXTAUTH_URL: 'http://localhost:3000'
+        NEXTAUTH_URL: 'https://list-loom-shahadat-hossain-akash.vercel.app'
     }
 }
 
